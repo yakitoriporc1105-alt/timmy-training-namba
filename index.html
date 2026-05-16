@@ -243,7 +243,7 @@
       background: #f5c400;
       border-radius: 12px;
       margin: 16px 12px;
-      padding: 24px 16px;
+      padding: 12px;
       text-align: center;
     }
 
@@ -274,16 +274,14 @@
     }
 
     .qr-section img.qr-img {
-      width: min(85vw, 420px);
-      height: min(85vw, 420px);
+      width: 100%;
+      height: auto;
       object-fit: contain;
       background: #fff;
-      border-radius: 16px;
-      padding: 12px;
-      margin-bottom: 16px;
+      border-radius: 12px;
+      padding: 8px;
+      margin: 0;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .qr-section .qr-instructions {
@@ -603,15 +601,7 @@
 
   <!-- QRコード -->
   <div class="qr-section" id="qr">
-    <div class="qr-title">Timee</div>
-    <div class="qr-subtitle">チェックイン / チェックアウト用QRコード</div>
-    <div class="qr-store">難波焼とりporc</div>
     <img class="qr-img" src="qr_code.png" alt="タイミーQRコード">
-    <div class="qr-instructions">
-      業務開始時 <span class="tag">チェックイン</span> と<br>
-      業務終了時 <span class="tag">チェックアウト</span> に
-    </div>
-    <div class="qr-cta">この <u>QRコード</u> をアプリから読み込んでください！</div>
   </div>
 
   <footer>
