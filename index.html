@@ -1,327 +1,614 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>洗い場マニュアル｜焼とりporc 難波</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>難波洗い場タイミー用</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --card: #252525;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --text: #f0ece0;
+      --text-muted: #b0a890;
+      --warn-bg: #2a1f0e;
+      --warn-border: #c9a84c;
+      --section-border: #3a3530;
+    }
 
-<style>
-/*
-  シックな3色カラーパレット:
-  - ベース: #1a1a1a (深いチャコール)
-  - アクセント: #c9a962 (落ち着いたゴールド)
-  - テキスト: #f5f5f5 (オフホワイト)
-*/
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-* {
-  box-sizing: border-box;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  background: #1a1a1a;
-  color: #f5f5f5;
-  line-height: 1.8;
-}
+    /* ヘッダー */
+    header {
+      background: linear-gradient(135deg, #111 0%, #1e1a14 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 20px 16px 16px;
+      text-align: center;
+    }
 
-.wrap {
-  max-width: 720px;
-  margin: auto;
-  padding: 32px 20px;
-}
+    header .store-name {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
 
-h1 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #f5f5f5;
-  letter-spacing: 0.5px;
-}
+    header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
 
-.subtitle {
-  font-size: 14px;
-  color: #c9a962;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #333;
-}
+    header .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
 
-h2 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 16px 0;
-  color: #c9a962;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    /* 目次 */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--section-border);
+      margin: 16px 12px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-h2::before {
-  content: "";
-  display: inline-block;
-  width: 3px;
-  height: 16px;
-  background: #c9a962;
-  border-radius: 2px;
-}
+    .toc-title {
+      background: var(--gold);
+      color: #111;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 14px;
+      letter-spacing: 0.05em;
+    }
 
-p, li {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #f5f5f5;
-}
+    .toc ul {
+      list-style: none;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
 
-ul {
-  padding-left: 20px;
-  margin: 0 0 16px 0;
-}
+    .toc ul li a {
+      display: inline-block;
+      background: #2e2a24;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #3a3530;
+    }
 
-li {
-  margin-bottom: 6px;
-}
+    /* セクション */
+    section {
+      margin: 0 12px 20px;
+    }
 
-.section {
-  background: #222;
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  border: 1px solid #333;
-}
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gold);
+    }
 
-img {
-  width: 100%;
-  border-radius: 6px;
-  margin-top: 16px;
-  border: 1px solid #333;
-}
+    .section-number {
+      background: var(--gold);
+      color: #111;
+      font-size: 11px;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-.note {
-  background: #1a1a1a;
-  border-left: 3px solid #c9a962;
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin-top: 16px;
-  font-size: 13px;
-  color: #f5f5f5;
-}
+    .section-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
 
-.warn {
-  background: #1a1a1a;
-  border-left: 3px solid #f5f5f5;
-  padding: 12px 16px;
-  border-radius: 4px;
-  margin-top: 16px;
-  font-size: 13px;
-  color: #f5f5f5;
-  font-weight: 500;
-}
+    .section-header .badge {
+      font-size: 11px;
+      background: #2e2a24;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
 
-.footer {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid #333;
-  font-size: 13px;
-  color: #888;
-  line-height: 1.8;
-}
+    /* テキストブロック */
+    .text-block {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border: 1px solid var(--section-border);
+    }
 
-.footer strong {
-  color: #c9a962;
-}
+    .text-block p {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
 
-.qr-section {
-  background: #222;
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  border: 2px solid #c9a962;
-  text-align: center;
-}
+    .text-block p:last-child {
+      margin-bottom: 0;
+    }
 
-.qr-section img {
-  max-width: 300px;
-  margin: 16px auto;
-  display: block;
-}
+    .text-block ul {
+      list-style: none;
+      padding: 0;
+    }
 
-.qr-section h2 {
-  justify-content: center;
-}
+    .text-block ul li {
+      padding: 3px 0 3px 16px;
+      position: relative;
+      font-size: 14px;
+    }
 
-.qr-section h2::before {
-  display: none;
-}
-</style>
+    .text-block ul li::before {
+      content: '・';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* 警告ブロック */
+    .warn-block {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-left: 4px solid var(--warn-border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+    }
+
+    .warn-block .warn-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .warn-block p {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    /* 写真 */
+    .photo-grid {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .photo-grid.cols-1 { grid-template-columns: 1fr; }
+    .photo-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .photo-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .photo-item {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--section-border);
+      background: #111;
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-grid.cols-1 .photo-item img {
+      height: 220px;
+    }
+
+    .photo-grid.cols-3 .photo-item img {
+      height: 110px;
+    }
+
+    .photo-caption {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 5px 8px;
+      background: #1e1e1e;
+      text-align: center;
+    }
+
+    /* QRコードセクション */
+    .qr-section {
+      background: #f5c400;
+      border-radius: 12px;
+      margin: 16px 12px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .qr-section .qr-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .qr-section .qr-subtitle {
+      background: #222;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .qr-section .qr-store {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    .qr-section img.qr-img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 16px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .qr-section .qr-instructions {
+      font-size: 16px;
+      color: #111;
+      font-weight: 600;
+      line-height: 2;
+      margin-bottom: 12px;
+    }
+
+    .qr-section .qr-instructions .tag {
+      display: inline-block;
+      border: 2px solid #111;
+      border-radius: 4px;
+      padding: 1px 10px;
+      font-weight: 700;
+    }
+
+    .qr-section .qr-cta {
+      font-size: 18px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    .qr-section .qr-cta u {
+      text-decoration-color: #111;
+    }
+
+    /* フッター */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 12px;
+      border-top: 1px solid var(--section-border);
+      margin-top: 20px;
+    }
+  </style>
 </head>
-
 <body>
-<div class="wrap">
 
-<h1>洗い場マニュアル</h1>
-<p class="subtitle">焼とりporc（ぽー）難波｜タイミー向け<br>
-分からないことは必ずスタッフに聞いてください。</p>
+  <!-- ヘッダー -->
+  <header>
+    <div class="store-name">焼とりporc 難波店</div>
+    <h1>難波洗い場タイミー用</h1>
+    <div class="subtitle">洗い場スタッフ向けマニュアル</div>
+  </header>
 
-<!-- グラス -->
-<div class="section">
-<h2>グラスの洗い方</h2>
-<ul>
-<li>グラス専用スポンジで洗う</li>
-<li>洗ったら必ず食洗機へ</li>
-<li>食洗機後はラックに伏せて粗熱を取る</li>
-</ul>
+  <!-- 目次 -->
+  <div class="toc">
+    <div class="toc-title">目次</div>
+    <ul>
+      <li><a href="#glass">グラスの洗い方</a></li>
+      <li><a href="#plates">お皿</a></li>
+      <li><a href="#tools">ボール・調理器具</a></li>
+      <li><a href="#tupper">タッパー・バット</a></li>
+      <li><a href="#spoon">スプーン</a></li>
+      <li><a href="#bussing">バッシング</a></li>
+      <li><a href="#position">洗い場スタッフの定位置</a></li>
+      <li><a href="#qr">QRコード</a></li>
+    </ul>
+  </div>
 
-<img src="glass_rack.jpg" alt="グラスラック（食洗機後）">
+  <!-- 1. グラスの洗い方 -->
+  <section id="glass">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>グラスの洗い方</h2>
+      <span class="badge">天王寺同様＋</span>
+    </div>
 
-<p>ドリンクスタッフがいないタイミングで冷蔵庫に収納してください。</p>
+    <div class="warn-block">
+      <div class="warn-label">⚠ 注意</div>
+      <p>写真の様にグラスを食洗のカゴに刺す（差込みすぎると圧で割れるので注意）</p>
+    </div>
 
-<img src="glass_storage.jpg" alt="グラス収納冷蔵庫（ビールグラス・冷グラス）">
+    <div class="photo-grid cols-2">
+      <div class="photo-item">
+        <img src="IMG_8044.jpeg" alt="食洗機のカゴにグラスを刺している">
+        <div class="photo-caption">食洗機カゴへの刺し方</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8030.jpeg" alt="食洗機のカゴ">
+        <div class="photo-caption">食洗機カゴ</div>
+      </div>
+    </div>
 
-<img src="fridge_full.jpg" alt="冷蔵庫全体（右側がグラス収納）">
+    <div class="text-block">
+      <p>その後、製氷機上のスペースで粗熱を取った後それぞれのグラスの場所に直す</p>
+    </div>
 
-<div class="warn">
-熱いグラスにドリンクは絶対に入れないでください
-</div>
-</div>
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8029.jpeg" alt="グラス収納冷蔵庫全体">
+        <div class="photo-caption">グラス収納冷蔵庫</div>
+      </div>
+    </div>
 
-<!-- 焼物皿 -->
-<div class="section">
-<h2>焼物のお皿</h2>
-<ul>
-<li>すべて予洗いしてから食洗機</li>
-<li>タレ・焦げは特に念入りに</li>
-</ul>
+    <div class="text-block">
+      <ul>
+        <li>グラスの収納場所は右側の上から二段目にビール、その下にその他のグラス</li>
+        <li>小さめのグラスは製氷機周りに直す</li>
+        <li>熱いグラスの注意は同様に</li>
+      </ul>
+    </div>
+  </section>
 
-<p>焼き台で使うお皿は背中側の木製棚へ戻してください。</p>
+  <!-- 2. お皿 -->
+  <section id="plates">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>お皿</h2>
+    </div>
 
-<img src="plate_shelf_wood.jpg" alt="焼物皿の棚（木製棚）">
+    <div class="text-block">
+      <p>注意は天王寺同様に</p>
+    </div>
 
-<img src="yakiami.jpg" alt="焼き網（洗い前の状態）">
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8031.jpeg" alt="黒い深皿・焼き物のお皿">
+        <div class="photo-caption">焼き物のお皿</div>
+      </div>
+    </div>
 
-<div class="note">
-焼き網は洗剤をつけてブラシでこすり洗いしてから食洗機に入れてください。
-</div>
-</div>
+    <div class="text-block">
+      <ul>
+        <li>焼き物のお皿、一品のお皿共に洗い終わったら洗い場すぐのスペースに置いておけばスタッフが直します</li>
+        <li>同じ形や種類のお皿は倒れない程度になるべく重ねて置いて置いてもらえると助かります</li>
+        <li>もし、余裕があれば収納をお願いする場合があります</li>
+      </ul>
+    </div>
 
-<!-- 前キッチン・小皿 -->
-<div class="section">
-<h2>前キッチンのお皿・小皿</h2>
-<p>焼き台前方のカウンター棚に収納してください。</p>
+    <div class="photo-grid cols-3">
+      <div class="photo-item">
+        <img src="IMG_8033.jpeg" alt="黒い舟形の小鉢">
+        <div class="photo-caption">小鉢</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8032.jpeg" alt="棚に皿が収納されている">
+        <div class="photo-caption">棚の収納</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8034.jpeg" alt="棚に黒い丸ボウルが収納されている">
+        <div class="photo-caption">棚の収納</div>
+      </div>
+    </div>
 
-<img src="counter_shelf.jpg" alt="カウンター棚（前キッチン皿）">
+    <div class="text-block">
+      <p>一部のお皿は冷蔵庫でグラスの冷蔵庫奥の小さな冷蔵庫に収納します</p>
+    </div>
 
-<img src="small_dishes.jpg" alt="小皿・タレ皿の収納場所">
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8047.jpeg" alt="丸い平皿（グレー斑点・白皿）">
+        <div class="photo-caption">丸い平皿</div>
+      </div>
+    </div>
 
-<img src="front_kitchen.jpg" alt="前キッチン（石皿・黒い大皿）">
+    <div class="text-block">
+      <p>茶碗、丼、ひし形のお皿も別の場所に直すのでキッチンのスタッフに渡してください</p>
+    </div>
+  </section>
 
-<img src="plate_dishes.jpg" alt="お皿の種類（白皿・青皿・クラック皿）">
+  <!-- 3. ボール・調理器具 -->
+  <section id="tools">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>ボール・調理器具</h2>
+    </div>
 
-<div class="note">
-忙しそうな場合は洗い場にまとめて、スタッフに声をかけてください。
-</div>
-</div>
+    <div class="photo-grid cols-2">
+      <div class="photo-item">
+        <img src="IMG_8046.jpeg" alt="泡立て器・お玉などの調理器具">
+        <div class="photo-caption">調理器具</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8045.jpeg" alt="棚にボール・鍋が収納されている">
+        <div class="photo-caption">ボール収納棚</div>
+      </div>
+    </div>
 
-<!-- ボール・調理器具 -->
-<div class="section">
-<h2>ボール・調理器具</h2>
-<ul>
-<li>ボールはシンク横のラックで乾燥</li>
-<li>タオルで拭いて戻してもOK</li>
-</ul>
+    <div class="text-block">
+      <ul>
+        <li>それぞれ予洗い後に食洗で洗浄、汚れがないことが確認できたらそれぞれ写真の場所に直してください</li>
+        <li>ボールは直す時には水分がない様にペーパーで拭く等の処理をしてからでお願いします</li>
+      </ul>
+    </div>
+  </section>
 
-<img src="tools_rack.jpg" alt="調理器具ラック（乾燥場所）">
+  <!-- 4. タッパー・バット -->
+  <section id="tupper">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>タッパー・バット</h2>
+    </div>
 
-<img src="tools_sink.jpg" alt="調理器具シンク下収納">
+    <div class="warn-block">
+      <div class="warn-label">⚠ 注意</div>
+      <p>食材が入っていた、今後入れるものなので泡立てたスポンジでしっかり洗ってから食洗で洗ってください</p>
+    </div>
 
-<img src="bowl_shelf.jpg" alt="ボール収納棚">
+    <div class="photo-grid cols-3">
+      <div class="photo-item">
+        <img src="IMG_8041.jpeg" alt="黄色いカゴの中にタッパー1つ">
+        <div class="photo-caption">乾燥カゴ</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8040.jpeg" alt="白い大きなタッパー">
+        <div class="photo-caption">タッパー</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8038.jpeg" alt="タッパーが重なっている">
+        <div class="photo-caption">タッパー収納</div>
+      </div>
+    </div>
 
-<div class="note">
-ボールがいっぱいになり邪魔な場合は、青いタオルで水滴を完全に拭き取った後、ボール収納場所に戻して頂いてもOKです。<br>
-詳しくはスタッフに聞いてください。
-</div>
-</div>
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8039.jpeg" alt="タッパーが並んでいる">
+        <div class="photo-caption">タッパー収納棚</div>
+      </div>
+    </div>
 
-<!-- タッパー -->
-<div class="section">
-<h2>タッパー・バット</h2>
-<ul>
-<li>黄色いカゴに伏せて乾かす</li>
-<li>必ず洗剤で四角までこすり洗いしてから食洗機（生物使用）</li>
-</ul>
+    <div class="text-block">
+      <ul>
+        <li>洗った後は、写真の様に洗い場の上のスペースに直します</li>
+        <li>ボールと同様に水分が付いたまま重ねないようにお願いします</li>
+        <li>種類分けをして重ねてください</li>
+        <li>一部のタッパーはアルコール消毒後に写真の様にペーパーを敷いてもらいます</li>
+        <li>詳しくはスタッフへお尋ねください</li>
+      </ul>
+    </div>
+  </section>
 
-<img src="tupper_basket.jpg" alt="タッパー用カゴ（黄色）">
+  <!-- 5. スプーン -->
+  <section id="spoon">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>スプーン</h2>
+    </div>
 
-<img src="tupper_drying.jpg" alt="タッパー乾燥（ナプキンを敷いて立てる）">
+    <div class="photo-grid cols-2">
+      <div class="photo-item">
+        <img src="IMG_8035.jpeg" alt="銀の筒にスプーンが収納されている">
+        <div class="photo-caption">スプーン収納</div>
+      </div>
+      <div class="photo-item">
+        <img src="IMG_8042.jpeg" alt="布巾を敷いた容器">
+        <div class="photo-caption">おしぼり横の収納</div>
+      </div>
+    </div>
 
-<img src="tupper_shelf1.jpg" alt="タッパー収納棚（上段）">
+    <div class="text-block">
+      <ul>
+        <li>洗い終わったら汚れがないか確認し、洗い場入ってすぐの銀の筒の中へ直してください</li>
+        <li>余裕があれば、おしぼり横に直してください。その際もペーパーで拭く等で水分を完全に取ってからにしてください</li>
+      </ul>
+    </div>
+  </section>
 
-<img src="tupper_shelf2.jpg" alt="タッパー収納棚（下段・蓋）">
+  <!-- 6. バッシング -->
+  <section id="bussing">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2>バッシング</h2>
+      <span class="badge">天王寺同様</span>
+    </div>
+  </section>
 
-<div class="warn">
-バットを濡れたまま重ねたり、上向きでカゴに入れると水滴が残り、食中毒の原因となります。必ず伏せて乾かしてください。<br>
-理解できない場合は社員に確認してください。
-</div>
-</div>
+  <!-- 7. 洗い場スタッフの定位置 -->
+  <section id="position">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2>洗い場スタッフの定位置</h2>
+    </div>
 
-<!-- スプーン -->
-<div class="section">
-<h2>スプーン・箸</h2>
-<p>洗ったスプーン・箸は、レジ横のカップに立てて乾かしてください。</p>
+    <div class="text-block">
+      <p>ピーク時には一気にお皿が返ってくる場合があります</p>
+    </div>
 
-<img src="spoon_storage.jpg" alt="スプーン・箸の収納場所（レジ横）">
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8036.jpeg" alt="シンクと2段棚全体">
+        <div class="photo-caption">洗い場全体</div>
+      </div>
+    </div>
 
-<div class="note">
-スプーンと箸は別々のカップに分けて収納してください。
-</div>
-</div>
+    <div class="photo-grid cols-1">
+      <div class="photo-item">
+        <img src="IMG_8037.jpeg" alt="黒い作業台アップ">
+        <div class="photo-caption">作業台（常にスペースを確保）</div>
+      </div>
+    </div>
 
-<!-- 洗い場の棚 -->
-<div class="section">
-<h2>洗い場の棚</h2>
-<p>洗い場の上棚は食洗機後の食器を一時置きする場所です。</p>
+    <div class="warn-block">
+      <div class="warn-label">⚠ 重要</div>
+      <p>その際に写真の場所がお皿で埋まっていると作業が滞る為、この二か所は常にスペースがあるようにお願いします</p>
+    </div>
 
-<img src="sink_shelf.jpg" alt="洗い場の棚（食器一時置き）">
+    <div class="text-block">
+      <ul>
+        <li>ドリンクスタッフと同じ空間で作業をしてもらいます。困ったことがあれば当スタッフにすぐにお尋ねください</li>
+        <li>後ろをスタッフが通ることがあります。作業中も周囲に気を配り、スタッフの動きを妨げないように心がけていただけると嬉しいです</li>
+      </ul>
+    </div>
+  </section>
 
-<img src="blue_cloth_bowl.jpg" alt="青布巾ボウル（カウンター上）">
+  <!-- QRコード -->
+  <div class="qr-section" id="qr">
+    <div class="qr-title">Timee</div>
+    <div class="qr-subtitle">チェックイン / チェックアウト用QRコード</div>
+    <div class="qr-store">難波焼とりporc</div>
+    <img class="qr-img" src="qr_code.png" alt="タイミーQRコード">
+    <div class="qr-instructions">
+      業務開始時 <span class="tag">チェックイン</span> と<br>
+      業務終了時 <span class="tag">チェックアウト</span> に
+    </div>
+    <div class="qr-cta">この <u>QRコード</u> をアプリから読み込んでください！</div>
+  </div>
 
-<div class="note">
-棚の上に食器が溜まってきたら、スタッフに声をかけてください。
-</div>
-</div>
+  <footer>
+    <p>焼とりporc 難波店 ／ 洗い場スタッフ向けマニュアル</p>
+  </footer>
 
-<!-- バッシング -->
-<div class="section">
-<h2>バッシング</h2>
-<p>可能であれば、お客様退店後にお皿とグラスを下げてください。</p>
-<p>テーブルの拭き上げとお皿のセッティングはスタッフが行います。</p>
-</div>
-
-<!-- 洗い場スタッフの定位置 -->
-<div class="section">
-<h2>洗い場スタッフの定位置</h2>
-<p>洗い場の横には製氷機があります。</p>
-<p>ドリンクスタッフが頻繁に氷を取りに来ますので、製氷機の前を塞がないよう心がけてください。</p>
-<p>作業中も周囲に気を配り、スタッフの動きを妨げないよう心がけて頂けると嬉しいです。</p>
-</div>
-
-<!-- QRコード -->
-<div class="qr-section">
-<h2>出勤・退勤用QRコード</h2>
-<p>出勤時・退勤時にこちらのQRコードを読み取ってください。</p>
-
-<img src="qr_code.png" alt="チェックイン/アウト用QRコード（難波焼とりporc）">
-
-<div class="note" style="text-align: left;">
-出勤時：業務開始前にQRコードを読み取り、チェックインを完了してください。<br>
-退勤時：業務終了後にQRコードを読み取り、チェックアウトを完了してください。
-</div>
-</div>
-
-<div class="footer">
-<p>質問やわからないことは遠慮せず聞いてください。</p>
-<strong>本日はよろしくお願いいたします。</strong>
-</div>
-
-</div>
 </body>
 </html>
